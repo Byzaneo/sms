@@ -1,0 +1,63 @@
+# ===================================================================
+# Spring Boot configuration.
+#
+# This configuration will be overridden by the Spring profile you use,
+# for example application-dev.yml if you use the "dev" profile.
+# ===================================================================
+
+info.project:
+  version: #project.version#
+  name: SMS Service
+  license: Apache 2.0
+  license-url: https://www.apache.org/licenses/LICENSE-2.0
+
+server.port: 23000
+
+sms:
+  account-sid: ${SMS_ACCOUNT_SID}
+  auth-token: ${SMS_AUTH_TOKEN}
+
+spring:
+  application.name: sms
+  mvc.favicon.enabled: false
+  jmx.enabled: false
+  cloud.consul:
+    discovery:
+      health-check-path: /health
+      health-check-interval: 20s
+      instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+      instance-group: one
+      prefer-ip-address: true
+    host: localhost
+    port: 8500
+
+management:
+  metrics:
+    web.server.auto-time-requests: true
+    export.prometheus.enabled: true
+    export.jmx.enabled: false
+  endpoints:
+    web:
+      base-path: /
+      exposure.include:
+      - info
+      - health
+      - prometheus
+  endpoint:
+    shutdown.enabled: true
+    health.show-details: always
+    httptrace.enabled: true
+
+byzaneo:
+  billing.enabled: true
+  cors:
+    allowed-origins: "*"
+    allowed-methods: GET, PUT, POST, DELETE, OPTIONS
+    allowed-headers: "*"
+    exposed-headers: Origin,X-Requested-With,Content-Type,Accept,Accept-Encoding,Accept-Language,Host,Referer,Connection,User-Agent,Authorization
+    allow-credentials: true
+    max-age: 1800
+
+logging.level:
+  root: WARN
+  io.byzaneo: INFO

@@ -1,0 +1,18 @@
+# ===================================================================
+# Spring Boot configuration for the "dev" profile.
+# This configuration overrides the application.yml file.
+# ===================================================================
+
+spring:
+  profiles.active: dev
+  devtools:
+    restart.enabled: true
+    livereload.enabled: false # we use gulp + BrowserSync for livereload
+  jackson.serialization.indent_output: true
+
+byzaneo:
+  billing.enabled: false
+
+logging.level:
+  root: INFO
+  io.byzaneo: DEBUG
