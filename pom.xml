@@ -16,7 +16,7 @@
 
     <properties>
         <one.service.disabled>false</one.service.disabled>
-        <twilio.version>7.23.1</twilio.version>
+        <twilio.version>7.24.2</twilio.version>
         <guava.version>20.0</guava.version>
     </properties>
 

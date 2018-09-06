@@ -17,23 +17,26 @@ import static org.springframework.http.ResponseEntity.status;
 @RequestMapping("/api")
 public class MessageController {
 
+    private final String serviceSid;
+
     public MessageController(@Value("${sms.account-sid}") String accountSid,
+                             @Value("${sms.service-sid}") String serviceSid,
                              @Value("${sms.auth-token}") String authToken) {
         Twilio.init(accountSid, authToken);
+        this.serviceSid = serviceSid;
     }
 
 
     @Price(value = "0.0999", description = "Send a SMS")
-    @PostMapping(path = "/messages/{fromNumber}/{toNumber}",
+    @PostMapping(path = "/messages/{toNumber}",
                  consumes = TEXT_PLAIN_VALUE,
                  produces = TEXT_PLAIN_VALUE)
-    public ResponseEntity<String> send(@PathVariable String fromNumber,
-                                       @PathVariable String toNumber,
+    public ResponseEntity<String> send(@PathVariable String toNumber,
                                        @RequestBody String text) {
         try {
             return ok(Message.creator(
                     new PhoneNumber(toNumber),
-                    new PhoneNumber(fromNumber),
+                    this.serviceSid,
                     text)
                     .create()
                     .getSid());
