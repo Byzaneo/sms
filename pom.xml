@@ -10,7 +10,7 @@
         <relativePath />
     </parent>
 
-    <artifactId>byzaneo-one-service-sms</artifactId>
+    <artifactId>sms</artifactId>
     <packaging>war</packaging>
     <name>[ONE] Byzaneo One - Service - SMS</name>
 
