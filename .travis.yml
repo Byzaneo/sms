@@ -1,4 +1,4 @@
-before_install: "git clone -b travis `git config --get https://sources.byzaneo.com/scm/one/maven.git` target"
+before_install: "git clone https://sources.byzaneo.com/scm/one/maven.git target"
 after_script: "mvn compile --settings target/travis/settings.xml"
 language: java
 # use Java 10
