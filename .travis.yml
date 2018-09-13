@@ -1,12 +1,9 @@
+before_install: "git clone -b travis `git config --get https://sources.byzaneo.com/scm/one/maven.git` target"
+after_script: "mvn compile --settings target/travis/settings.xml"
 language: java
-# use Java 8
+# use Java 10
 jdk:
 - oraclejdk10
 
 install: true
-
-# cache the build tool's caches
-cache:
-  directories:
-  - $HOME/.m2
 
