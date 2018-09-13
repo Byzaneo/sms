@@ -1,5 +1,3 @@
-before_install: "git clone https://sources.byzaneo.com/scm/one/maven.git target"
-after_script: "mvn compile --settings target/travis/settings.xml"
 language: java
 # use Java 10
 jdk:
@@ -7,3 +5,5 @@ jdk:
 
 install: true
 
+before_install: "git clone https://sources.byzaneo.com/scm/one/maven.git target"
+script: "mvn compile --settings target/travis/settings.xml"
