@@ -1,0 +1,12 @@
+language: java
+# use Java 8
+jdk:
+- oraclejdk10
+
+install: true
+
+# cache the build tool's caches
+cache:
+  directories:
+  - $HOME/.m2
+
