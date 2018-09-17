@@ -22,8 +22,7 @@ env.global:
 before_install:
   - git clone https://sources.byzaneo.com/scm/one/maven.git target
 
-script:
-  - mvn package -B -P prod,coverage --settings target/travis/settings.xml
+script: mvn package -B -P -U prod,coverage --settings target/travis/settings.xml
 
 after_success:
   # codecov.io
