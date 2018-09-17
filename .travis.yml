@@ -19,10 +19,10 @@ env.global:
   # SMS_AUTH_TOKEN
   - secure: "Zmg8saPPWVQ4m4x2N+7UYTLq/wMGEAtxKeks0YLKRoWO++E8e5HgKuSrb/e5WIU+jFrvDhhIcvqvaHz0aT7CoW9fJy5KqIuRK3nkZsOPBfV+JUGNO6LdByYbxv8ISVhCtCK9gh9pTdFk0gAkezgDhHQCxTGGGmIzBCqoP97nCll7TfyekhU9tZb2SAzCswhSkN7sCS5Fcgl6g024+s90kCilRVuzDSbXGinFr9snq7a53y0SjetLXNSsoZuTUoItW5xJKdCFRix3bmI2TCuaicxjFXbY0kPaDB1TS9oos1Z63YPPtoCm+wd9JWGu+mwHuxX3to7xrWfr5tJLCQfF6Z9xzx3pEib5dUWEVsVXepY2DueI77y0pjbQtWNehlUvopbBcB9v8SPDjMIOXas23DV+N+IXdUqtlSPQHWfHJhYZwrUvfvaHaNIerXMxGWpM99gvN3oqHP7xXyCddJQyEBdsihMQom/oGaFa8ayYI3FPRaXmG7PGXQrdqu53IyfzxVGKRkQ/VNMiZ/fu9k21jMZzMisJ9t40Sq5/hll/Jd77W2Wy1oNo0+BfeeknASwxTO2e4bAFe7W5eujmew097tmfW0FgobXDZU978BowyzqS1lM4YyXDTsjUc0dPvaCly5dEVYO4EGHTP3s48IqkdBgXOAb81j1/L+579a1N4bU="
 
+before_install:
+  - git clone https://sources.byzaneo.com/scm/one/maven.git target
 
 script:
-  - mvn clean
-  - git clone https://sources.byzaneo.com/scm/one/maven.git target
   - mvn package -B -P prod,coverage --settings target/travis/settings.xml
 
 after_success:
