@@ -1,9 +1,37 @@
+sudo: required
 language: java
-# use Java 10
-jdk:
-- oraclejdk10
+jdk: oraclejdk10
 
-install: true
+services:
+  - docker
+cache.directories:
+  - '$HOME/.m2/repository'
 
-before_install: "git clone https://sources.byzaneo.com/scm/one/maven.git target"
-script: "mvn compile --settings target/travis/settings.xml"
+env.global:
+  # BYZANEO_USERNAME
+  - secure: "ufRnCFDr8njrim3HGzHGecGDBthXAVeHidhBf1aeDMENHpOWaiLrfeqwz365i2VxNKPJVO8yH+I44L4f1TlwrikQXul+KZYTmOl8reqYibQ6xyksMEiEvghHjNKh744rVqeWNlywIj46KkLmUZhcqS9kFzxgD+Bb5Jncgkeo/3ZKM/w++NkKH+0KrqZTgV/T7IkYfD5he1/Zgq/xyP62886JjeY1ZOSiCTcqt0OxoV8BfetEx1H0lxEWxAw+GhrBM/T/HPPLOAoUq8kJNhWpRTjR6Diqsfq4IIyWYAYNF6OnTG+tabiU6j+v4qtaXCwdLd0xw0Y2gpbU1PuTgeuR2IKjPGwT3GON8eqjeQ3+7vd+iJ/yXld0ZO1M1kwg1hJfJ0JzSEiPWvODhTKx/W7aZrAvC4ckYO2FKU0LKzTXUTdJRIlWXbNQpmQ0PPYbUmasKz4hbvSWx2wzwTijBsuBM9Xgi7jFNlftH58IW2bGcJlfgu0HcUYqNGookDwT4WgiapUksWIO+ls8u3+yfGhPKpXiwWrN+6FDWpw6bJQdU1icIY8vOvAPga117RnBZGudlrWuG7PjYBBle3PuOvoAUmf6jKxNNMlAiH7YEZS3TphTUgG+jlqb7tJwFdGJV8TH0VwKJ4NX9StxP7/NI8eGQwtmAQIYDZ7ZdBgM08LeLOQ="
+  # BYZANEO_PASSWORD
+  - secure: "pYpJJSQBq16uEaqpHGTYzwieFSgq6i8nWt7MJcguLmvYz3I5AwvTQokBvK8svRtQCY1Hyc0sJI2s9mFOH49wHtQMVxxc2WC79cvWEQhU0XeOP3mAsrzp+oe1aGUHTxW0h7t94r3nX0sIbnnrNT+EZqQGcFubTsPMgO+IBNKYIR6MwOmNCQncANT/f+IHZ+L/1i3oeSi20wJEaSAQEW2sWjFXwfIEQ2MT7hU2qcrzc44KIdMn+yozPLeo9NDZlKt+4kNG5Q8Oxz23xg08qh+f/nwwxipsKbRSL1KJnifnKC1Wgtt7c0bwF5E5WCNStLOxkhMMz5/lj3JjWfYCJG6v9d5cclRZAkt1IOcduRNBqKM5LR1j/0ofLEgA/3LACQqFJA2oWh3wdoGkn5A6DUc0fAf7kEodAHQmKt1E38Vu1d9F+7b69FOiHfc7Ja9GKwIIto81T7L1AcmzFN2WpVQoJOJGnLr1/kVir8Nikdhl2RLni943g+ZYlogGGltzC16Tcs/Gk8vlDFp3s5dOw8f9vKDv49HOkfRl25DfSEUK2LfiEuhRzvR5V3vkTygdSTXuZIbSsrt7mnBpWVDLy2LrpRq/DQBilaYoFNd2SJidPl4/EbjglEbmeRh7MGoLCdEvJdgcUZb64WPpz7Sn6w9SXxtxgXar3jGux49CWQ56o/Q="
+  # SMS_ACCOUNT_SID
+  - secure: "WSZLmFi/nqxQus94Ul2YVWPF358oP2Q/9QpyG6Rl+3xNc8e8qOEZIb94GgTQJ6p79zLgx6QeUtO8A4XASHR7T9CCQtICM6jxhDEFgHN0eJ03/ZG9WwzVhobvqF5/Dz/SeMxleuI6hTxKO6NoTNSem9Ywspt0VYL7dJXB3Bvxe4I+Lvl+llHam5oZv9H+GAL8h7FTM9zgo6b8U2VlLuWY2bFiCTXBHusyC6Xe9EC8xQ+HFS0SCKNAsrM0MyDN4//qKS7XRxbS7YpbgNvF3UhbKC+P6+ugsNBWPHyS8mQDzCJPx2wJP3/pAB7enOZZwuXdcLEf5ci/RMb2wehob9VTGBDoHvvU+ukRXVE4+7vIe/3HEnAQAbxCWKmfhkNCOAdYcRHDL4LiMd5KSFBpa0SDgbxyuHLtgb9CX5bepo780+ifycORXE4jJ7lIjMoQ5aTbUei3xMLKodje4uRaVDi20PJFljdNeXYqv3XnrJC6UFdi1BZuaJ+vADoO024nzlhZTt+EdpziY+G9pWi/ACKyVBvT6tIKtGB4NnMhUtfRnSqngRwv/P6DN5qhUjUYPQRbcPrMIm/HJvYG8g3xF1wy/I6jjKuMqe+Mo+OUqBRjCLmBUS6u7vLgFrRxvaoNFRac6SMIcnE7LdhTMDr74Me1VciAKAnkH5E7wPD/XTKTHDw="
+  # SMS_ACCOUNT_SID
+  - secure: "C5OODzct7Qo6Ug+G5qtLZ/wZcpmHf46eh5rT6MQspkYtkS1omoioBNiuW1QgL3MqcJOTjgY0YYvYrq+Dz1/sSzM/drqEj14QeeA/u4kTFbWqQzk1PXJhQvxBinD/Z+4wZ2FXDFqbHtsS+kvV4L06Yfs6swu8Z7KV5fDGjiIEGkL7FehPEOXej0kmqx6XXiIlbSVY06exsomzgb4dgq7VetUu4vLcfHj3/Ik1aIh+enhE31CM4/vtGHKSLw3kOcyP2c6dUxNatfwTd7SniqhsTUcND6Nvuk65YJzeOFNvexKK99mFd0imDtIEhIXpXvhdoD2RqlZhQObJVwHMti4F1gd3I2LYLbR2MijsAeJRDSyVkhTR7Cmh/F6jN7Kw2yqJdXvOUMZ3cx6CUzWG8CnLHYw4UBcJot87Y6MjK0a8L90dcLwDWz1B2WXqPh9fSAV3g1NwJNGo8oJKG7UjmmnDloz7Ig2YrHmMEmSMi6W+587W38j4pp1V2Qtjzyw+dYZ9q+QoYhHgjumLqL5NhCqF9lJaHEMKbI6vcjqEN5PFqNswxzS9ZtyRIyisOmm5pHK0gm74wBQp2lDqqk051IyRPBo61OmP948HLIHX1ddEupvTfn7X/Ey8jQFgXoG24hA+NWtb4k7hvhAbhmSuDzWiy80iRWK7zq3ljY8I6j2bduQ="
+  # SMS_AUTH_TOKEN
+  - secure: "Zmg8saPPWVQ4m4x2N+7UYTLq/wMGEAtxKeks0YLKRoWO++E8e5HgKuSrb/e5WIU+jFrvDhhIcvqvaHz0aT7CoW9fJy5KqIuRK3nkZsOPBfV+JUGNO6LdByYbxv8ISVhCtCK9gh9pTdFk0gAkezgDhHQCxTGGGmIzBCqoP97nCll7TfyekhU9tZb2SAzCswhSkN7sCS5Fcgl6g024+s90kCilRVuzDSbXGinFr9snq7a53y0SjetLXNSsoZuTUoItW5xJKdCFRix3bmI2TCuaicxjFXbY0kPaDB1TS9oos1Z63YPPtoCm+wd9JWGu+mwHuxX3to7xrWfr5tJLCQfF6Z9xzx3pEib5dUWEVsVXepY2DueI77y0pjbQtWNehlUvopbBcB9v8SPDjMIOXas23DV+N+IXdUqtlSPQHWfHJhYZwrUvfvaHaNIerXMxGWpM99gvN3oqHP7xXyCddJQyEBdsihMQom/oGaFa8ayYI3FPRaXmG7PGXQrdqu53IyfzxVGKRkQ/VNMiZ/fu9k21jMZzMisJ9t40Sq5/hll/Jd77W2Wy1oNo0+BfeeknASwxTO2e4bAFe7W5eujmew097tmfW0FgobXDZU978BowyzqS1lM4YyXDTsjUc0dPvaCly5dEVYO4EGHTP3s48IqkdBgXOAb81j1/L+579a1N4bU="
+
+
+script:
+  - mvn clean
+  - git clone https://sources.byzaneo.com/scm/one/maven.git target
+  - mvn package -B -P prod,coverage --settings target/travis/settings.xml
+
+after_success:
+  # codecov.io
+  - bash <(curl -s https://codecov.io/bash)
+  # docker
+  - docker login -u $BYZANEO_USERNAME -p $BYZANEO_PASSWORD repository.byzaneo.com
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`
+  - export IMAGE_NAME=repository.byzaneo.com/sms
+  - docker build -t $IMAGE_NAME:$COMMIT .
+  - docker tag $IMAGE_NAME:$COMMIT $IMAGE_NAME:$TAG
+  - docker push $IMAGE_NAME

@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.com/Byzaneo/sms.svg?branch=master)](https://travis-ci.com/Byzaneo/sms)
+[![codecov](https://codecov.io/gh/Byzaneo/sms/branch/master/graph/badge.svg)](https://codecov.io/gh/Byzaneo/sms)
+
 # SMS service
 
 Text message service
