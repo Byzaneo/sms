@@ -25,7 +25,7 @@ before_install:
   - git clone https://sources.byzaneo.com/scm/one/maven.git target
 
 install:
-  - mvn package -B -P -U prod,coverage --settings target/travis/settings.xml
+  - mvn package -U -B -P prod,coverage --settings target/travis/settings.xml
 
 after_success:
   # codecov.io
