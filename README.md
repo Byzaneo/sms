@@ -13,9 +13,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need to install the software and how to install them
 
-```
-Give examples
-```
+- Java 10+
+- Maven 3.5+
 
 ### Installing
 
@@ -24,27 +23,19 @@ A step by step series of examples that tell you how to get a development env run
 Say what the step will be
 
 ```
-Give the example
+mvn clean install
 ```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+```
+mvn clean test
+```
 
-### Break down into end to end tests
-
-Explain what these tests test and why
+with Jacoco coverage
 
 ```
-Give an example
+mvn clean test -P coverage
 ```
 
 ## Deployment
@@ -57,15 +48,9 @@ Add additional notes about how to deploy this on a live system
 
 ## Authors
 
-* **Romain Rossi** - *Initial work* 
+* **Byzaneo Team** - *Initial work* 
 
 
 ## License
 
-
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* Apache 2.0
