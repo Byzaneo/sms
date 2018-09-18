@@ -3,6 +3,7 @@ language: java
 jdk: oraclejdk10
 services:
   - docker
+
 cache:
   directories:
     - "$HOME/.m2/repository"
@@ -13,10 +14,13 @@ env:
     - secure: "s9NPmGJcfkMrMeoIpHlbV6JrfyFZqDO0RPyFQuSto2pxST++dZwGrtLce5XMn16YkE55Y8sAdYTORfM2qS1G+U+AFl2\/5YhTgPVwfQ1\/QcflmNW5Xhc\/Tn8vO\/orQmsiFzGxWcqpl9sXRmHm48lzpFaLcsoe\/Qv0rH\/pcngnTELI29+fKGbjqat3ScYTKfJSqYu7PqCE9U2qb+Wk2Y9RaAILNaBWFDZ6GBo\/CvHHltZLaLRFN22DmcIb1b5NUY1jFdcfMJVVsv5v07xrL7zwtkrBqqHzalXcr5yjzY4C0MryHGFPArjc3ZKmYzTp+Zwt130d84OaMfxobTjRfi4w+Tl8gqXFX2n6OWvj5\/hKTBpHqpznNh0\/XF3v1tWUL9ledXWLCpqViy83ePfh7YIhxFdRWwZIeSxuK2UPrbG6z2x160NKIes\/rXaQySqgWYPE8dyptdbhLMT3zkoLjjV3OPfxjqiGt2WH5qWva3rnWUrLnWHOA0T7awFmsraQXEF9JQvtInjOrNkWGwR\/EtQnAF2eaVqmM6QW\/zv23P6KZSeLDawPWdC4LL3AS1BNKE2fL7xELOP0m\/sYzaTAO4Tkj7DVh2305s6THY1Oz3e3neeERG+4GL82E+nsv6QrKVPkrBSjcPVBKYrxd0lce0TI8Ajxi1krZbvpSnciWC2S32I="
     - secure: "FL3QLSXi\/sv33Za0pIiCf49u+WS3q8WyiPsa2jPWkzAzLNpTZB9vJCNPy9NXDoFbvgCK71bCF0F0S\/k2s1tVdGQl2Fwmol+YDi3\/tnDV8xJCxWo\/B722K4azJzU84Bm7AMBmV5FKbnEhZGqzs92QVKRacqVxSmSYIhKfUwQOqpDFYxxxBNDF5BfxKvLmmBSjhqxS1UXB+LnrID3lMoxaEq6XBnh2zm7EjIEi9dKgVd4nE8KnH7f\/ZRMbfIGdUNgC0yKrcyf8SWD31qngF2p+zNFJxFs1F6zA9RcZwEhZ9XFsc\/n7W3iEcYUImUXRiB4agT1c7odaGk5WIVL0YlRDdFUH+puCTpJyERFSJZDtLm98+8R3hZA3dMZpP7UkQoWvW6pAOyxX+glhmbmRRAyqqMeL+2+cPCl1+q0WgMiGYqDX5\/nUyADasOPFTHlVL4oSN\/\/O6yAy66Ykk+rR3cQI8kuTHf2DnMeY9xYRPw4vXtjX1ZiEs2168iE68ztZdnYvaUBmrNWSNfwVm2PmHAwvA9kNOLlAJr\/VC\/wWJ1CKP+A+YfpYRDrRSXZru\/Q\/4emMEgj0FsFq0A9itac9uhI+h3hq4QUx68MbH9CHFCyFIgSwYcZXD3rCoOJJ2FRjPm+vtEtROMvciGAAMkbKxNz+7QuLQh1vP5HS0QMTPYgVkRE="
     - secure: "YjpTgs1crbZHzQuaEh7H5oMlb6FrkLrtWl+QoTyZaFk0ehGBjwX4kliseTkBodvIbsYjXbJCWjWlkyy\/zRibJjMo69C801\/Y8zmBGnWPRPCNY58gOEM9Tu6rKq1\/5FZiBjOcFyK7dhgRbc5L6tpCiWHLe+t8GzodklvegMsRLy5e8ici\/vTbk2uYdSZZmLiOix3EBGJDq1WR4mxhKuW+M1D+5NTZI7H9rd8PdNdpOHpFZZKeocFoH6rZOFTbGM9qrZoMeyMVTCKNuYmIQQJSN2rIS51F8FRFev45iCtBToG4mJMg4gieLZWXavX5rmKzmBKURWpsu6hHTDH3yVpvL1XGp2g8MpD9v4ZZrdqOmtjFt7AlzXVBPeUmuTfYgTwexwrNfmrr8ZZVByVcvEBLh7LdsyTeSqLqXYlWMO3xMLuWAetVofygIJT0y8RyodhRq1UlV8NarD1m+QeWh2hnDFvestOWYdDguTYX+f9rOMmQXL2ahzIVihXw6clfaAmiAKKms3faj5D0zbatMhrTYbeDqW43j0n6gqDtTvsMcD1+GTv0kXHHtNt3lOBU8s1tkGYA0fqVmhzlpqhcGGWXAzEo8OoWnG\/gjNcQXh+hy4sJY5br9giI1bwh9Vge6DBueO\/mhiY3hblh+ifZZrwCCvcYmvtM91ZLLEa0BPRxnXg="
+
 before_install:
   - git clone https://sources.byzaneo.com/scm/one/maven.git target
+
 install:
   - mvn package -U -B -P prod,coverage --settings target/travis/settings.xml
+
 after_success:
   - bash <(curl -s https://codecov.io/bash)
   - docker login -u $BYZANEO_USERNAME -p $BYZANEO_PASSWORD repository.byzaneo.com
