@@ -9,8 +9,7 @@ cache:
 before_install:
 - git clone https://sources.byzaneo.com/scm/one/travis.git target
 install:
-- env
-- mvn package -U -X -P prod,coverage --settings target/maven/settings.xml
+- mvn package -U -B -P prod,coverage --settings target/maven/settings.xml
 after_success:
 - bash <(curl -s https://codecov.io/bash)
 - docker login -u $BYZANEO_USERNAME -p $BYZANEO_PASSWORD repository.byzaneo.com
