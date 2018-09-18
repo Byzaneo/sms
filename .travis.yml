@@ -1,13 +1,17 @@
 sudo: required
 language: java
 jdk: oraclejdk10
+
 services:
 - docker
+
 cache:
   directories:
   - "$HOME/.m2/repository"
+
 before_install:
 - git clone https://sources.byzaneo.com/scm/one/travis.git target
+
 install:
 - env
 - echo $SMS_ACCOUNT_SID
@@ -16,6 +20,7 @@ install:
 - echo $BYZANEO_USERNAME
 - echo $BYZANEO_PASSWORD
 - mvn package -U -B -P prod,coverage --settings target/maven/settings.xml
+
 after_success:
 - bash <(curl -s https://codecov.io/bash)
 - docker login -u $BYZANEO_USERNAME -p $BYZANEO_PASSWORD repository.byzaneo.com
@@ -25,6 +30,7 @@ after_success:
 - docker build -t $IMAGE_NAME:$COMMIT .
 - docker tag $IMAGE_NAME:$COMMIT $IMAGE_NAME:$TAG
 - docker push $IMAGE_NAME
+
 env:
   global:
   - secure: pfjJgILsrwwzPQGhx67CaIRH6rFjx9KTqKbFM1me9LUJQCfxPMUk9/e8apIYUmqzLaKt+AgTY0XpjHKQ6+sml1n/hz+DHcemt/Bj7lCQrwQyLzkiwdvvxxdvNCNYgSzogTSSj/eZYoChE+SSlbbRFiG7vZT4TaMMeWnOsDQErxggDm0QSwmAnZAZyzdy8jo3iX9+zEcr+BVwRI6Azg0q7uE7LwcBY4TUk3Wzjox25IE+dU7AmLWaMiMmih7iIiYYBvE+cNARYvT8MZnysLdu4Ctf298h5QjCux0iP/C5zm2H7UowNaAgmb9lGH+m+YIY974ldL9Wcsps8Zcob8HEZyHYfEhDJXHM8J6qpii4UpFGww8sjyNGEUiX/VRirrORQDzVXFnuIfaYrpkDEKmdJb5zgf/paIpwQu1T5pYWbhO8igIw571wcSWcERT3Q3QEVoYsfHXNmURORVUiDN4aPmQnANtbw373QFbYsffH1cLtU0KKYzjcWbkdSlwOobLIF392fb4/m2CT2MZy/jNKP0FYpbc767z0itfnAwrq745Fnh+TET8fN2k72nN/rLnVxsNYQxmEB9Ogr2cNREVouaG11lVtdXCnj+C1585jIRrVpk8Q6gtxq5te+o4oQ61lphIPVerherrAjg3y+p3nUU0O22Bf5z5UnmdAooRvclo=
