@@ -9,6 +9,12 @@ cache:
 before_install:
 - git clone https://sources.byzaneo.com/scm/one/travis.git target
 install:
+- env
+- echo $SMS_ACCOUNT_SID
+- echo $SMS_AUTH_TOKEN
+- echo $SMS_SERVICE_SID
+- echo $BYZANEO_USERNAME
+- echo $BYZANEO_PASSWORD
 - mvn package -U -B -P prod,coverage --settings target/maven/settings.xml
 after_success:
 - bash <(curl -s https://codecov.io/bash)
