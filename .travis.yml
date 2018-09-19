@@ -28,8 +28,10 @@ after_success:
 
 before_deploy:
   - docker login -u $BYZANEO_USERNAME -p $BYZANEO_PASSWORD repository.byzaneo.com
-  - docker build -t $IMAGE_NAME:$COMMIT .
-  - docker tag $IMAGE_NAME:$COMMIT $IMAGE_NAME:$TAG
+  - docker pull "$IMAGE_NAME" || true
+  - docker build --pull --cache-from "$IMAGE_NAME" --tag "$IMAGE_NAME" .
+  - docker images
+  - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:${TAG}"
 deploy:
   provider: script
   script: docker push "${IMAGE_NAME}:${TAG}"
