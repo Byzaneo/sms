@@ -1,3 +1,10 @@
+stages:
+  - name: prepare
+  - name: build
+  - name: coverage
+  - name: deploy
+    if: branch = master
+
 language: java
 jdk: oraclejdk10
 install: true
@@ -13,15 +20,20 @@ env:
     - secure: tpBNm5PQTRyCI8xpGUePwjRtSveilykJsjfXKfGfzgsU3EduLiXq0+WcazUznSyWuuXaLtRGIDG5Mg3+Z7hrWDuFyrSXp6G0s/wyAux3wrRK5wZNzlOxdhWj+aOgcQ+meXX/Gf/XhtmHKeM6afUUgLhh7OI0pyjmWVqVZ8kY2AkKRuQhdi1JJLeaxW6/PKuEIMtxdeQJcSTPSUnBK9MbJfYJUr+y37Vyi8nZix3F+BA90QO4VNuh3ZMw8ZaOAjYoeDCy4WVek+4YMd/fACFYMXXkLT5FhqCHVUVJcAjraeFw+amz3nitfpca3lpWHbm1ppAE4C19aHBXSNSZZE8AjsWhSPZj7c4TzI5C/aixien1k5Kb7cbUkt0swp8VbX+iQn6UdW72V7Z+YKka5feVUeHf2RlbUHnGARSG4FIrDs/mzSxRmz8HQirWceQnjm8qmjRCwOxu0wOaZVsQ7l5u3wYvj80ANKNXqkGcABxv/oW68ZY3BbQDns+X71vE3SDMqoTv0rPgWXGmGb8Qxea1JqPuIC3nZYZnxI2pbT+ieK6b8jNAuWTlu8x2aHRvLKswFf3nRbNlVFEvOe6Pzhggffa/pFLEs+UX0+fwsJyLRZUkno4hwA0souiGXdjchwWiu+Fk/9ByjpAksZYjfP1CdYGUrclh7Nijmg2BtiP8mmk=
     - secure: iXeQv0Xng3jH2ivPNs7kFeutdb6l4BecD+m14v/FxtxHsbwtsg1ZFcWLMhLs86K2dv8JtiX4gPdjFHcvAcNV5CcTDYedUZ66F/6e40YbExA3KhkFg1yb5sCiHZuIdjwsVrTtEG60llOtIawx9QDh62fpp9MgcQy0HwsN6yNal9liTTboDEe9Rin1pu4sRrGZL1dR6H3BQqFUUqZiEt+eR6tN9CjRSaDhmdtCu5zn+9VfLSFcU2bRnTPv+hFvCkGKyuEwfZO57wedIATVgv2+6kTwrsBsUVAZrd3eV+gOAIx8mBpTcgZkKTzddMNP8vzVYu7/+OZLhw+TgqQ0aFBMGgBEQcvaCBpHHjBSroMmWk6VALsM09dwzw3vg5+QRvtaT6J4L19vdJvGY594tsqGoTddTQuCkJcvuEhZlY1hz0YhxX6x+QFRlpbV74Fe/p9NpAELoiRQI+nujZphmtnvE//3GJL88oU3kHvpz/GC4AIYJKXPmd+oCI+M5JE38Yx1INacrYw6miPsTiIz9mwEKKQypoC04PJlfDK75Kcu6+cNXxZ+TX/qzcMAEJ/IuFkgd7pITBdZXOYHqObUl378VEFQjaIr7XyJmp+i4FM/gHn48/lg8fUgZYtBfGM9UAW+c5hw291autHswFcH6QUYXm9lr1kKvhuTYfDGu9YZUZw=
     - secure: mbmVIf2whnk9DS7Bs5Lrq+sDfn7Cezf2Vpdeiy4zUnBqksN/6OqOoqNtpu7yGfDQQhGkjFRkeOad9hhPEewnknyALQlqhy+1e7ouhTHagnlErFS7ulpR/LJTmSK0pocKSxB6YsvoA+0Y4xfLf1bM4hgD1I3lf8vQZig0yb/LasjMSVK7aoaZWEt0ZDrEAvtnHNhpYCKfBLqTsjIbEYZHf01JWFALz/h6KYqpMGg1i4h8fK85ok3HrEDD9JiTbBYZmkn1XSbcWsp0BU2KnEsSv6khd+ZnsPF2w7AsbBpM2ZQw0WEzZqcxTdj9Km3rY91i4arpHMsX4sFHo3DTfyfP1XX8/QVMAlNdereOITYqmTS9Oon/XkMXDuvwv2EVVlfoIHYdc90DNLeStojOc5FKoZdDsJNiktFm3hJ122v2KVKA7hnJJCkcAs8Jg739eBJmzFsG8xD2nPkcqh2Lu3oWRSh6eetKEwNDWjirk6hFKvO3wjWBvXmfN5eh0pzgG22YNQ4Ahkufg7CVh8JGXHAh5L2giNtO0lvfABpTIGz4l7YdeJY4zSO9LFDkPUOnEPBrm2rBoGsOsqErzUq2p0sv1VsdyoRk3v4PMYCxrEZZRI+zHrCbQtDpVdrTMpCDXmwdn3xu9Ix6Gg/Hds9n/5x1O7rwZY0tyEa+04Rg7+C+PMg=
-before_install:
-  - git clone https://sources.byzaneo.com/scm/one/travis.git target
-script:
-  - mvn package -U -B -P prod,coverage --settings target/maven/settings.xml
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
-  - docker login -u $BYZANEO_USERNAME -p $BYZANEO_PASSWORD repository.byzaneo.com
-  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else exit 0; fi`
-  - export IMAGE_NAME=repository.byzaneo.com/sms
-  - docker build -t $IMAGE_NAME:$COMMIT .
-  - docker tag $IMAGE_NAME:$COMMIT $IMAGE_NAME:$TAG
-  - docker push $IMAGE_NAME
+
+jobs:
+  include:
+    - stage: prepare
+      script: git clone https://sources.byzaneo.com/scm/one/travis.git target
+    - stage: build
+      script: mvn package -U -B -P prod,coverage --settings target/maven/settings.xml
+    - stage: coverage
+      script: bash <(curl -s https://codecov.io/bash)
+    - stage: deploy
+      script:
+        - docker login -u $BYZANEO_USERNAME -p $BYZANEO_PASSWORD repository.byzaneo.com
+        - export TAG=latest
+        - export IMAGE_NAME=repository.byzaneo.com/sms
+        - docker build -t $IMAGE_NAME:$COMMIT .
+        - docker tag $IMAGE_NAME:$COMMIT $IMAGE_NAME:$TAG
+        - docker push $IMAGE_NAME
