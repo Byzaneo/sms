@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.com/Byzaneo/sms.svg?branch=master)](https://travis-ci.com/Byzaneo/sms)
 [![codecov](https://codecov.io/gh/Byzaneo/sms/branch/master/graph/badge.svg)](https://codecov.io/gh/Byzaneo/sms)
+[![Maintainability](https://api.codeclimate.com/v1/badges/6a38f084735af25539cd/maintainability)](https://codeclimate.com/github/Byzaneo/sms/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/6a38f084735af25539cd/test_coverage)](https://codeclimate.com/github/Byzaneo/sms/test_coverage)
 
 # SMS service
 
