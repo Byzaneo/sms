@@ -1,11 +1,10 @@
 [![Build Status](https://travis-ci.com/Byzaneo/sms.svg?branch=master)](https://travis-ci.com/Byzaneo/sms)
-[![codecov](https://codecov.io/gh/Byzaneo/sms/branch/master/graph/badge.svg)](https://codecov.io/gh/Byzaneo/sms)
 [![Maintainability](https://api.codeclimate.com/v1/badges/6a38f084735af25539cd/maintainability)](https://codeclimate.com/github/Byzaneo/sms/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/6a38f084735af25539cd/test_coverage)](https://codeclimate.com/github/Byzaneo/sms/test_coverage)
+[![codecov](https://codecov.io/gh/Byzaneo/sms/branch/master/graph/badge.svg)](https://codecov.io/gh/Byzaneo/sms)
 
 # SMS service
 
-Text message service
+Text message service provided by [byzaneo.io](https://byzaneo.io).
 
 ## Getting Started
 
@@ -13,8 +12,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
+Things you need to build and run this service:
 - Java 10+
 - Maven 3.5+
 
@@ -40,19 +38,19 @@ with Jacoco coverage
 mvn clean test -P coverage
 ```
 
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
 ## Built With
 
 * [Maven](https://maven.apache.org/) - Dependency Management
+
+### Profiles
+
+* dev: development profile. 
+* prod: production packaging et runtime.
 
 ## Authors
 
 * **Byzaneo Team** 
 
-
 ## License
 
-* Apache 2.0
+* [Apache 2.0](./LICENSE)

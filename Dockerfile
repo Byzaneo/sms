@@ -4,8 +4,7 @@ MAINTAINER Byzaneo <core@byzaneo.io>
 ENV START_DELAY=0 \
     JAVA_OPTS="--add-modules java.xml.bind --add-opens java.base/java.lang=ALL-UNNAMED"
 
-ARG JAR_FILE
-ADD ${JAR_FILE}  /app.war
+ADD ./target/*.war /app.war
 
 EXPOSE 23000
 CMD echo "SMS will start in ${START_DELAY}s..." && \
