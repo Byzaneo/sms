@@ -42,5 +42,9 @@ deploy:
 
 notifications:
   webhooks:
-  - https://travis:$SPINNAKER_PASSWORD@spinnaker.byzaneo.io/gate/webhooks/webhook/sms
+    on_success: always
+    on_failure: never
+    on_start: never
+    urls:
+      - https://travis:$SPINNAKER_PASSWORD@spinnaker.byzaneo.io/gate/webhooks/webhook/sms
 
