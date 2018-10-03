@@ -49,7 +49,7 @@ mvn clean test -P coverage
 
 ## Authors
 
-* **Byzaneo Team** 
+* Byzaneo Team 
 
 ## License
 

@@ -1,8 +1,8 @@
-FROM openjdk:10-jre-slim
+FROM openjdk:11-jre-slim
 MAINTAINER Byzaneo <core@byzaneo.io>
 
 ENV START_DELAY=0 \
-    JAVA_OPTS="--add-modules java.xml.bind --add-opens java.base/java.lang=ALL-UNNAMED"
+    JAVA_OPTS="--add-opens java.base/java.lang=ALL-UNNAMED"
 
 ADD ./target/*.war /app.war
 
