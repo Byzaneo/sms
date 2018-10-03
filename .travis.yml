@@ -21,20 +21,16 @@ env:
 
 before_install:
   - git clone https://sources.byzaneo.com/scm/one/travis.git target
+  - chmod +x ./target/*.sh
 install: true
 
 script:
-  - mvn package -U -B -P prod,coverage --settings target/maven/settings.xml
+  - ./target/travis-script.sh
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - ./target/travis-success.sh
 
 before_deploy:
-  - docker login -u $BYZANEO_USERNAME -p $BYZANEO_PASSWORD repository.byzaneo.com
-  - docker pull "$IMAGE_NAME" || true
-  - docker build --pull --cache-from "$IMAGE_NAME" --tag "$IMAGE_NAME" .
-  - docker images
-  - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:${TAG}"
-  - chmod +x ./target/travis-deploy.sh
+  - ./target/travis-pre-deploy.sh
 deploy:
   provider: script
   script: "./target/travis-deploy.sh"
