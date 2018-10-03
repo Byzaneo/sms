@@ -34,8 +34,9 @@ before_deploy:
   - docker build --pull --cache-from "$IMAGE_NAME" --tag "$IMAGE_NAME" .
   - docker images
   - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:${TAG}"
+  - chmod +x ./target/travis-deploy.sh
 deploy:
   provider: script
-  script: target/travis-deploy.sh
+  script: "./target/travis-deploy.sh"
   on:
     branch: master
